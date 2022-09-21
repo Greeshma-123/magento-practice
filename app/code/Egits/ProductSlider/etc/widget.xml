@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Egits\ProductSlider\Block\Widget\Showdata" id="temp_attribute">
+        <label>Product Slider Widget</label>
+        <description>Product Slider Widget</description>
+        <parameters>
+            <parameter name="widgettitle" sort_order="10" visible="true" xsi:type="text">
+                <label>Product Slider Widget</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

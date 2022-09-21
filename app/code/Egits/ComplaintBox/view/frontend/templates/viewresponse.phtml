@@ -1,0 +1,49 @@
+
+<?php
+
+ $collection = $block->getComplaintResponse();
+
+if ($collection->count()) {
+?>
+<div class="table-wrapper orders-history">
+    <table class="data table table-order-items history" id="my-orders-table">
+        <caption class="table-caption"><?php echo __('Grid Record') ?></caption>
+        <thead>
+        <tr>
+            <th scope="col" class="col id"><?php echo __('ID') ?></th>
+            <th scope="col" class="col name"><?php echo __('Complaint') ?></th>
+            <th scope="col" class="col email"><?php echo __('Order Id') ?></th>
+            <th scope="col" class="col email"><?php echo __('Response') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $count =1;
+        foreach ($collection as $item): 
+        ?>
+        <tr>
+            <td class="col id">
+                <?php echo $count++; ?>
+            </td>
+            <td data-th="<?= $block->escapeHtml(__('Complaint')) ?>" class="col name">
+                <?php echo $item->getComplaint() ?>
+            </td>
+            
+            <td data-th="<?= $block->escapeHtml(__('Order Id')) ?>" class="col name">
+                <?php echo $item->getOrderId() ?>
+            </td>
+
+            <td data-th="<?= $block->escapeHtml(__('Response')) ?>" class="col name">
+                <?php echo $item->getResponse() ?>
+            </td>
+
+        </tr>
+        <?php  
+        endforeach; 
+       
+        ?>
+        </tbody>
+    </table>
+</div>
+<?php
+ }
+ ?>

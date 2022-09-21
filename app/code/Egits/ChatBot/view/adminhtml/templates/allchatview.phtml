@@ -1,0 +1,82 @@
+<style>
+        #bot {
+  margin: 50px 0;
+  height: 700px;
+  width: 450px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2) ;
+  border-radius: 20px;
+  margin-left:32%;
+}
+#body {
+  width: 100%;
+  height: 75%;
+  background-color: #F3F4F6;
+  overflow-y: auto;
+  margin-left: 24px;
+    margin-right: 24px;
+ 
+}
+#new{
+    margin-left:20px;
+    margin-right:20px;
+}
+.adminlabel{
+    color:blue;
+}
+.userlabel{
+    color:green;
+}
+input.admin {
+    margin-top: 9px;
+    margin-bottom: 9px;
+}
+input.user {
+    margin-left: 12px;
+}
+</style>
+<?php
+$collection = $block->getChatview();
+if ($collection->count()) {  
+?>
+<div id="bot">
+    <div id="body">
+        <div id="new">
+            <div class="customer1">
+                <?php 
+                foreach ($collection as $item): 
+                    if($item['user_or_admin']==1)
+                    {
+                ?>
+                        <label class="adminlabel"> Admin </label>
+                        <input type="text" value="<?php echo $item['chat']; ?>" class="admin">
+                    <?php
+                    }
+                    else{
+                    ?>
+                        <label class="userlabel"> User </label>
+                        <input type="text" value="<?php echo $item['chat']; ?>" class="user">
+                    <?php
+                    }
+                    ?>
+                    </br>
+                <?php
+                endforeach; 
+                ?>
+            </div>
+
+        </div> 
+    </div>
+</div>
+<?php
+}
+else
+{
+    echo "Chat Not Found";
+}
+?>
+
+

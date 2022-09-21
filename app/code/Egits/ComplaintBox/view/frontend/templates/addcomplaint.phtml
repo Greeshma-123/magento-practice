@@ -1,0 +1,32 @@
+<?php
+    $order_id =$this->getRequest()->getParam('order_id');
+
+?>
+
+<form class="form content"
+      action="<?= $block->getUrl('complaint/history/save') ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <div class="field complaint required">
+            <label class="label" for="complaint"><span><?= $block->escapeHtml(__('Complaint')) ?></span></label>
+            <div class="control">
+                <textarea name="complaint" id="complaint" data-validate="{required:true}">              
+                </textarea>
+            </div>
+        </div>
+
+        <input type="hidden" name="order_id" value="<?php echo $order_id; ?>" />
+     
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+
+        </div>
+    </div>
+</form>

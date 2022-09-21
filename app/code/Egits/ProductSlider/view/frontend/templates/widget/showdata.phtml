@@ -1,0 +1,265 @@
+<?php
+	$collection = $block->getProductcollection();
+?>
+    <div class="">
+            <h2 class="title" style="text-align:center">BEST SELLERS</h2>
+    </div>
+        <div class="block widget block-products-list grid">
+            <div class="block-content">
+                <div class="products-grid grid">
+                    <ol class="product-items widget-product-grid owl-carousel owl-theme product-carousel">
+                        <?php
+                            foreach ($collection as $item) { 
+                                if($item->getTypeId() =="simple"){
+                        ?>
+                            <li class="product-item">
+                                <div class="product-item-info">
+                                    <a href="<?php echo $item->getUrlKey(); ?>.html " class="product-item-photo">
+                                        <span class="product-image-container" style="width: 100%;">
+                                            <span class="product-image-wrapper" style="padding-bottom: 100%;">
+                                                <img class="product-image-photo" src="<?php echo $this->getUrl('media/catalog/product').$item->getImage();?>" loading="lazy" alt="Product image"></span>
+                                        </span>
+                                    </a>
+                                    <div class="product-item-details">
+                                        <strong class="product-item-name">
+                                            <a title="Radiant Tee" href="<?php echo $item->getUrlKey(); ?>.html " class="product-item-link">
+                                            <?php echo $item->getName(); ?></a>
+                                        </strong>
+                                    
+                                        <div class="price-box price-final_price" data-role="priceBox" data-product-id="" data-price-box="">
+                                            <span class="normal-price">
+                                                <span class="price-container price-final_price tax weee">
+                                                    <span class="price-label">Best Price</span>
+                                                    <span id="" data-price-amount="22" data-price-type="finalPrice" class="price-wrapper "><span class="price"><?php echo '$'.round($item->getFinalPrice()); ?></span></span>
+                                                </span>
+                                            </span>
+                                            <span class="second-price">
+                                                <!-- <span>MRP</span> -->
+                                                <span class="lined-price-list"><?php echo '$'.round($item->getPrice()); ?></span>
+                                            </span>
+                                        </div>
+
+                                        <?php 
+                                            $sku =$item->getSku();
+                                            $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); 
+                                            $productRepository = $objectManager->get('\Magento\Catalog\Model\ProductRepository');
+                                            $product = $productRepository->get($sku);
+                                            $productid = $product->getId();
+                                            //$cartHelper = $this->helper('Magento\Checkout\Helper\Cart');
+                                            //$addToCartUrl = $cartHelper->getAddUrl($product);
+                                            $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
+                                            $addToCartUrl =  $listBlock->getAddToCartUrl($product);
+
+                                            $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                                            $postData = $postDataHelper->getPostData($block->getAddToCartUrl($product), ['product' => $productid]);
+                                        ?>
+
+                                        <form data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post"> 
+                                            <?php echo $block->getBlockHtml('formkey')?>
+                                            <div class="btn">
+                                                <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                    <span>Add to Cart</span>
+                                                </button>
+                                            </div> 
+                                            
+                                        </form>
+
+                                        <div class="custom-block-wishlist" data-role="add-to-links">
+                                                <?php
+                                                    echo $block->getLayout()->createBlock('Magento\Wishlist\Block\Catalog\Product\ProductList\Item\AddTo\Wishlist')->setProduct($item)->setTemplate("Magento_Wishlist::catalog/product/list/addto/wishlist.phtml")->toHtml();
+                                                ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php
+                            }
+                        else
+                        {
+                            ?>
+                        <li class="product-item">
+                                <div class="product-item-info">
+                                    <a href="<?php echo $item->getUrlKey(); ?>.html " class="product-item-photo">
+                                        <span class="product-image-container" style="width: 100%;">
+                                            <span class="product-image-wrapper" style="padding-bottom: 100%;">
+                                                <img class="product-image-photo" src="<?php echo $this->getUrl('media/catalog/product').$item->getImage();?>" loading="lazy" alt="Product image"></span>
+                                        </span>
+                                    </a>
+                                    <div class="product-item-details">
+                                        <strong class="product-item-name">
+                                            <a title="Radiant Tee" href="<?php echo $item->getUrlKey(); ?>.html " class="product-item-link">
+                                            <?php echo $item->getName(); ?></a>
+                                        </strong>
+                                    
+                                        <div class="price-box price-final_price" data-role="priceBox" data-product-id="" data-price-box="">
+                                            <span class="normal-price">
+                                                <span class="price-container price-final_price tax weee">
+                                                    <span class="price-label">Best Price</span>
+                                                    <span id="" data-price-type="finalPrice" class="price-wrapper "><span class="price"><?php echo '$'.round($item->getFinalPrice()); ?></span></span>
+                                                </span>
+                                            </span>
+                                            <span class="second-price">
+   
+                                                <!-- <span>MRP</span> -->
+                                                <span class="lined-price-list">  <?php echo '$'.round($item->getRegularPrice()); ?>  </span>
+                                            </span>
+                                        </div>
+                                        
+                                            <?php 
+                                                $sku =$item->getSku();
+                                                $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); 
+                                                $productRepository = $objectManager->get('\Magento\Catalog\Model\ProductRepository');
+                                                $product = $productRepository->get($sku);
+                                                $productid = $product->getId();
+                                                //$cartHelper = $this->helper('Magento\Checkout\Helper\Cart');
+                                                //$addToCartUrl = $cartHelper->getAddUrl($product);
+                                                $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
+                                                $addToCartUrl =  $listBlock->getAddToCartUrl($product);
+
+                                                $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                                                $postData = $postDataHelper->getPostData($block->getAddToCartUrl($product), ['product' => $productid]);
+                                            ?>
+
+                                        <form data-role="tocart-form" action="<?php echo $addToCartUrl; ?>" method="post"> 
+                                            <?php echo $block->getBlockHtml('formkey')?>
+                                            <div class="btn">
+                                                <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                    <span>Add to Cart</span>
+                                                </button>
+                                            </div> 
+                                            
+                                        </form>
+
+                                        <div class="custom-block-wishlist" data-role="add-to-links">
+                                                <?php
+                                                    echo $block->getLayout()->createBlock('Magento\Wishlist\Block\Catalog\Product\ProductList\Item\AddTo\Wishlist')->setProduct($item)->setTemplate("Magento_Wishlist::catalog/product/list/addto/wishlist.phtml")->toHtml();
+                                            
+                                                ?>
+                                        </div>
+
+                                            <div class="swatch-opt-2049" data-role="swatch-option-2049" data-rendered="true">
+                                                                    
+                                                <div class="swatch-opt-2049" data-role="swatch-option-2049" data-rendered="true">
+                                                    <div class="swatch-attribute color" >
+                                                        <div aria-activedescendant="" tabindex="0" aria-invalid="false" aria-required="true" role="listbox" aria-label="Color" class="swatch-attribute-options clearfix">
+                                                    
+                                                                    <?php
+
+                                                                        //Configurable Product Id
+
+                                                                        $colorAttributeId = $item->getResource()->getAttribute('color')->getId(); // Get Color Attribute Id
+                                                                        $configurableAttrs = $item->getTypeInstance()->getConfigurableAttributesAsArray($item); // Get Used Attributes with its values
+
+                                                                        if(isset($configurableAttrs[$colorAttributeId])){
+                                                                        count($configurableAttrs[$colorAttributeId]['values']); // Gives you the count
+
+                                                                        // echo "<pre>";print_r($configurableAttrs[$colorAttributeId]['values']); 
+
+                                                                        foreach ($configurableAttrs[$colorAttributeId]['values'] as $attribute) 
+                                                                        {
+                                                                            // echo "<pre>";print_r($attribute);
+                                                                            // die;
+                                                                    ?>
+                                                            
+                                                            
+                                                                <div class="swatch-option color" >
+                                                                            
+                                                                    <?php
+                                                                    
+                                                                    echo  $attribute['store_label'];
+
+                                                                    ?>
+                                                                </div>
+                                                                    
+                                                                    <?php 
+                                                                    }
+                                                                    }
+                                                
+                                                                    ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="swatch-attribute size" data-attribute-code="size" data-attribute-id="144">
+                                                        <div aria-activedescendant="" tabindex="0" aria-invalid="false" aria-required="true" role="listbox" aria-label="Size" class="swatch-attribute-options clearfix">
+                                                            
+                                                                <?php
+
+
+                                                                    $colorAttributeId = $item->getResource()->getAttribute('size')->getId(); // Get Color Attribute Id
+                                                                    $configurableAttrs = $item->getTypeInstance()->getConfigurableAttributesAsArray($item); // Get Used Attributes with its values
+
+                                                                    if(isset($configurableAttrs[$colorAttributeId])){
+                                                                    count($configurableAttrs[$colorAttributeId]['values']); // Gives you the count
+
+                                                                    // echo "<pre>";print_r($configurableAttrs[$colorAttributeId]['values']); 
+
+                                                                    foreach ($configurableAttrs[$colorAttributeId]['values'] as $attribute) 
+                                                                    {
+                                                                ?>
+
+                                                            <div class="swatch-option text" >
+
+                                                                    <?php
+                                                                        
+                                                                        echo  $attribute['store_label'];
+
+                                                                        ?>
+                                                            </div>
+                                                                        
+                                                                        <?php 
+                                                                        }
+                                                                        }
+                                                    
+                                                                        ?>
+                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+                                 </div>
+                            
+                            </li>
+<?php
+                        }
+                        }
+                        ?>
+                    </ol>
+                </div>
+            </div>
+        </div> 
+
+
+
+
+        
+
+        <script type="text/javascript">
+            require(['jquery', 'owlcarousel'], function($) {
+                $(document).ready(function() {
+                    var owl = $('.product-carousel');
+              owl.owlCarousel({
+                margin: 30,
+                nav: true,
+                loop: true,
+                autoWidth:true,
+                dots:false,
+                responsive: {
+                  0: {
+                    items: 1
+                  },
+                  600: {
+                    items: 4
+                  },
+                  1000: {
+                    items: 7
+                  }
+                }
+              });
+                });
+            });
+        </script>
+
+
+

@@ -1,0 +1,130 @@
+<style>
+#bot {
+  margin: 50px 0;
+  height: 700px;
+  width: 450px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2) ;
+  border-radius: 20px;
+  margin-left:100px;
+}
+#body {
+  width: 100%;
+  height: 75%;
+  background-color: #F3F4F6;
+  overflow-y: auto;
+  margin-left: 24px;
+  margin-right: 24px;
+ 
+}
+#new
+{
+    margin-left:20px;
+    margin-right:20px;
+}
+.user 
+{
+    background: lightgoldenrodyellow;
+    width: 300px;
+    margin-top: 16px;
+}
+.customer 
+{
+    background: lightblue;
+    width: 300px;
+    margin-top: 15px;   
+}
+.adminlabel
+{
+    color:blue;
+}
+.userlabel
+{
+    color:green;
+}
+input.admin 
+{
+    margin-top: 9px;
+    margin-bottom: 9px;
+}
+</style>
+<?php
+$collection = $block->getChatview();
+if ($collection->count()) {
+   
+?>
+<div id="bot">    
+    <div id="body">
+        <div id="new">
+            <div class="customer1">
+                <?php 
+                    foreach ($collection as $item): 
+                        if($item['user_or_admin']==1)
+                            {
+                ?>
+                        <label class="adminlabel"> Admin </label>
+                        <input type="text" value="<?php echo $item['chat']; ?>" class="admin">
+                        <?php
+                            }
+                            else
+                            {
+                        ?>
+                            <label class="userlabel"> User </label>
+                            <input type="text" value="<?php echo $item['chat']; ?>" class="user">
+                        <?php
+                            }
+                        ?>
+                            </br>
+                <?php
+                    endforeach; 
+                ?>
+            </div>
+                <!-- form start -->
+                    <form class="form content"
+                        action="<?= $block->getUrl('chatbot/chat/save') ?>"
+                        id="contact-form"
+                        method="post"
+                        data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+                        data-mage-init='{"validation":{}}'>
+                        <fieldset class="fieldset">
+                            <div class="field chat required">
+                                <label class="label" for="chat"><span><?= $block->escapeHtml(__('User Chat ')) ?></span></label>
+                                <div class="control">
+                                    <textarea name="chat" id="chat" data-validate="{required:true}">              
+                                    </textarea>
+                                </div>
+                            </div>
+                            <?php 
+                        foreach ($collection as $item): 
+                            ?>
+                            <input type="hidden" name="customer_id" value="<?php echo $item['customer_id']; ?>" />
+
+                            <input type="hidden" name="thread_id" value="<?php echo $item['thread_id']; ?>" />
+                            
+                            <?php
+                        endforeach; 
+                        ?>
+                        </fieldset>
+                        <div class="actions-toolbar">
+                            <div class="primary">
+                                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                                    <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                <!-- form end -->
+        </div> 
+    </div>
+</div>
+<?php 
+}
+else
+{
+    echo "Chat Not Found";
+}
+?>
+

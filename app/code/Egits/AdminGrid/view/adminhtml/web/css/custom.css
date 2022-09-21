@@ -1,0 +1,5 @@
+/* Hide Select from Gallery Button  */
+
+input[name="image"] + label.file-uploader-button + label.file-uploader-button {
+    display: none;
+    }

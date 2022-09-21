@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Egits_ComplaintBox::complaint" title="order complaint" module="Egits_ComplaintBox" sortOrder="71" resource="Egits_ComplaintBox::complaint" />
+        <add id="Egits_ComplaintBox::manage" title="View complaint" module="Egits_ComplaintBox" sortOrder="15" action="order_complaint/complaints/index" resource="Egits_ComplaintBox::manage" parent="Egits_ComplaintBox::complaint" />
+    </menu>
+</config>

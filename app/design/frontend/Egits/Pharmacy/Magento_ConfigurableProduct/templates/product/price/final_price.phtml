@@ -1,0 +1,61 @@
+<?php
+$priceModel = $block->getPriceType('regular_price');
+$finalPriceModel = $block->getPriceType('final_price');
+
+$oldprice = $priceModel->getValue();
+$specialprice = $finalPriceModel->getValue();
+
+// print_r($oldprice);
+// print_r($specialprice);
+// die;
+$saving = (100*(($oldprice - $specialprice)/$oldprice));
+if ( $block->hasSpecialPrice()){     
+?>
+  <div class="">
+   <div class="price-box price-final_price" data-role="priceBox" data-product-id="" data-price-box="">
+      <span class="normal-price">
+         <span class="price-container price-final_price tax weee">
+            <span class="price-label">Best Price
+
+            </span>
+               <span id="" data-price-amount="" data-price-type="finalPrice" class="price-wrapper ">
+                  <span class="price">$<?php echo $specialprice; ?>
+
+                  </span>
+               </span>
+         </span>
+      </span>
+      </div>
+            <div class="mrp-info">
+            <span class="second-price">
+                  <span>MRP:<span class="lined-price-list"><?php echo $oldprice; ?> </span></span>
+                  <span class="discount-price"><?php  echo 'GET '.round($saving) . '%' .' OFF'; ?></span>
+                  <span class="discount-price">(Inclusive of all taxes)</span>
+                  </span>
+            </div>
+  
+   </div>
+
+<?php
+   }
+   else{
+
+$priceModel = $block->getPriceType('regular_price');
+
+$finalPriceModel = $block->getPriceType('final_price');
+$idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
+$schema = ($block->getZone() == 'item_view') ? true : false;
+?>
+      <span class="normal-price">
+            <?= /* @noEscape */ $block->renderAmount($finalPriceModel->getAmount(), [
+               'display_label' => __('As low as'),
+               'price_id' => $block->getPriceId('product-price-' . $idSuffix),
+               'price_type' => 'finalPrice',
+               'include_container' => true,
+               'schema' => $schema,
+                ]);
+            ?>
+      </span>
+<?php
+   }
+   ?>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Egits_ChatBot::Thread" title="Thread" module="Egits_ChatBot" sortOrder="71" resource="Egits_ChatBot::Thread" />
+        <add id="Egits_ChatBot::manage" title="View Thread" module="Egits_ChatBot" sortOrder="15" action="thread/chat/index" resource="Egits_ChatBot::manage" parent="Egits_ChatBot::Thread" />
+    </menu>
+</config>

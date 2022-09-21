@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route frontName="complaint" id="complaint">
+            <module name="Egits_ComplaintBox"/>
+        </route>
+
+        <route frontName="custom_response" id="custom_response">
+        <module name="Egits_ComplaintBox"/>
+    </route>
+
+    </router>
+</config>
+
+
+

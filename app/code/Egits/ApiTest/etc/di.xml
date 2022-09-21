@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+     <preference for="Egits\ApiTest\Api\ProductRepositoryInterface" type="Egits\ApiTest\Model\Api\ProductRepository" />
+    <!-- <preference for="Egits\ApiTest\Api\RequestItemInterface"  type="Egits\ApiTest\Model\Api\RequestItem" /> -->
+    <preference for="Egits\ApiTest\Api\ResponseItemInterface" type="Egits\ApiTest\Model\Api\ResponseItem" />
+
+</config>

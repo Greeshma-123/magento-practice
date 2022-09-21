@@ -1,0 +1,17 @@
+{
+    "quote": {
+        "column": {
+            "egits_order_comment": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "egits_order_comment": true
+        }
+    },
+    "sales_order_grid": {
+        "column": {
+            "egits_order_comment": true
+        }
+    }
+}

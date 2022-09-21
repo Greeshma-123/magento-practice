@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="default_head_blocks"/>
+    <body>
+        <!-- remove default welcome msg -->
+
+            <referenceBlock name="header">
+                <arguments>
+                    <argument name="show_part" xsi:type="string">other</argument>
+                </arguments>
+            </referenceBlock>
+ 
+ <!-- change searchbox placeholder -->
+    <referenceBlock name="top.search">
+        <action method="setTemplate">
+            <argument name="template" xsi:type="string">Magento_Theme::form.mini.phtml</argument>
+        </action>
+    </referenceBlock>
+
+         <!--rename Create Account Link-->
+           <referenceBlock name="register-link">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Sign Up</argument>
+            </arguments>
+        </referenceBlock>
+
+
+         <!-- change logo -->
+            <referenceBlock name="logo">
+                <arguments>
+                    <argument name="logo_file" xsi:type="string">images/logo.png</argument>
+                </arguments>
+            </referenceBlock>
+
+
+            <!-- remove header panel -->
+             <referenceBlock name="header.panel" remove="true" />  
+     
+
+            <!-- <referenceBlock name="my-account-link" remove="true" />
+           <referenceBlock name="wish-list-link" remove="true" /> -->
+
+
+            <!-- move sign in / sign up to header wraper    -->
+             <move element="header.links" destination = "header-wrapper" after="minicart" />
+            
+        
+
+            <!-- <move element="form.subscribe" destination="footer" after="footer_content"/> -->
+
+            <!-- remove add to compare button -->
+            <!-- <referenceBlock name="category.product.addto.compare" remove="true"/> -->
+
+         
+  
+
+    </body>
+</page>

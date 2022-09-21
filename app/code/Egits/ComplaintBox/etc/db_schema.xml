@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   	<table name="order_complaint" resource="default" engine="innodb" comment="order complaint Table">
+		
+        <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID" />
+		
+		<column xsi:type="varchar" name="complaint" nullable="false" length="200" comment="complaint" />
+	
+        <column xsi:type="int" name="order_id" nullable="false"  comment="order id" />
+
+	
+		 <column xsi:type="int" name="customer_id" nullable="false"  comment="customer id" />
+
+		 <column xsi:type="varchar" name="response" nullable="false" length="200" comment="response" />
+
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+            comment="Creation Time"/>
+
+    	<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+            comment="Update Time"/>
+
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="id" />
+		</constraint>
+   	</table>
+</schema>

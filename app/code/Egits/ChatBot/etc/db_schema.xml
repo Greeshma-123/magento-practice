@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   	<table name="chat_thread" resource="default" engine="innodb" comment="chatbot thread">
+		
+        <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID" />
+		
+         <column xsi:type="int" name="customer_id" nullable="false"  comment="customer id" />
+
+		<column xsi:type="varchar" name="thread" nullable="false" length="200" comment="thread" />
+	
+		<column xsi:type="int" name="approve" nullable="false"  comment="approve" />
+
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+            comment="Creation Time"/>
+
+    	<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+            comment="Update Time"/>
+
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="id" />
+		</constraint>
+   	</table>
+
+	<table name="replay_thread" resource="default" engine="innodb" comment="chatbot replay">
+		
+        <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID" />
+		
+         <column xsi:type="int" name="thread_id" nullable="false"  comment="thread id" />
+
+		<column xsi:type="int" name="customer_id" nullable="false"  comment="customer id" />
+
+		<column xsi:type="varchar" name="chat" nullable="false" length="200" comment="chat" />
+	
+		<column xsi:type="int" name="user_or_admin" nullable="false"  comment="user/admin" />
+
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+            comment="Creation Time"/>
+
+    	<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+            comment="Update Time"/>
+
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="id" />
+		</constraint>
+   	</table>
+</schema>

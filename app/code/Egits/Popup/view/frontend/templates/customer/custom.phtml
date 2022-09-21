@@ -1,0 +1,42 @@
+<?php
+$statusmsg = $this->helper('Egits\Popup\Helper\Popupmsg')->getStatus();
+
+if ($block->customerSession->isLoggedIn()) 
+{
+    if($statusmsg == 1)
+        {
+            $session_var= $block->getCustomerSession()->getCustom();
+                if($session_var == '')
+                    {
+                        $block->getCustomerSession()->setCustom('newsessionmsg');
+                        ?>
+                            <div class="bt-action-file" style="display: none;">Content here</div>
+
+                                <script>
+                                    require(
+                                            [
+                                                'jquery',
+                                                'Magento_Ui/js/modal/modal'
+                                            ],
+                                            function(
+                                                $,
+                                                modal
+                                            ) {
+                                                var options = {
+                                                    type: 'popup',
+                                                    responsive: true,
+                                                    innerScroll: false,
+                                                    title: 'My Title',
+                                                    buttons: []
+                                                };
+                                                $(document).ready(function() {
+                                                    $(".bt-action-file").modal(options).modal('openModal');
+                                                });
+                                            }
+                                        );
+                                </script>
+                          <?php
+                    }
+        }
+}
+?>
